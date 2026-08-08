@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-08-08T03:23:06.790257+00:00",
+  "statistics": {
+    "total_rows": 10,
+    "processed_rows": 9,
+    "rows_with_issues": 9,
+    "rows_removed": 1,
+    "quality_score_before": 0.9189,
+    "quality_score_after": 0.9375
+  },
+  "issues": [
+    {
+      "row_index": 5,
+      "field": "email",
+      "issue_type": "invalid_format",
+      "original_value": "bob@example.com!!!",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'email' value 'bob@example.com!!!' is not a valid email"
+    },
+    {
+      "row_index": 6,
+      "field": "email",
+      "issue_type": "invalid_format",
+      "original_value": "bob@example.com!!!",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'email' value 'bob@example.com!!!' is not a valid email"
+    },
+    {
+      "row_index": 8,
+      "field": "email",
+      "issue_type": "invalid_format",
+      "original_value": "charlie@",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'email' value 'charlie@' is not a valid email"
+    },
+    {
+      "row_index": 0,
+      "field": "phone",
+      "issue_type": "invalid_format",
+      "original_value": "(555) 123-4567",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'phone' value '(555) 123-4567' is not a valid phone"
+    },
+    {
+      "row_index": 1,
+      "field": "phone",
+      "issue_type": "invalid_format",
+      "original_value": "555-123-4567",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'phone' value '555-123-4567' is not a valid phone"
+    },
+    {
+      "row_index": 2,
+      "field": "phone",
+      "issue_type": "invalid_format",
+      "original_value": "555-987-6543",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'phone' value '555-987-6543' is not a valid phone"
+    },
+    {
+      "row_index": 3,
+      "field": "phone",
+      "issue_type": "invalid_format",
+      "original_value": "555-987-6543",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'phone' value '555-987-6543' is not a valid phone"
+    },
+    {
+      "row_index": 5,
+      "field": "phone",
+      "issue_type": "invalid_format",
+      "original_value": "(555) 456-7890",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'phone' value '(555) 456-7890' is not a valid phone"
+    },
+    {
+      "row_index": 6,
+      "field": "phone",
+      "issue_type": "invalid_format",
+      "original_value": "(555) 456-7890",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'phone' value '(555) 456-7890' is not a valid phone"
+    },
+    {
+      "row_index": 7,
+      "field": "phone",
+      "issue_type": "invalid_format",
+      "original_value": "555.111.2222",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'phone' value '555.111.2222' is not a valid phone"
+    },
+    {
+      "row_index": 8,
+      "field": "phone",
+      "issue_type": "invalid_format",
+      "original_value": "invalid-phone",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'phone' value 'invalid-phone' is not a valid phone"
+    },
+    {
+      "row_index": 9,
+      "field": "phone",
+      "issue_type": "invalid_format",
+      "original_value": "555-333-4444",
+      "cleaned_value": null,
+      "severity": "error",
+      "message": "'phone' value '555-333-4444' is not a valid phone"
+    }
+  ],
+  "columns_processed": {
+    "email": {
+      "validate_email_issues": 3
+    },
+    "phone": {
+      "validate_phone_issues": 9
+    }
+  },
+  "suggestions": [
+    "Column 'name' still has 11% missing values after cleaning; consider a fill strategy or manual review.",
+    "Column 'phone' still has 11% missing values after cleaning; consider a fill strategy or manual review.",
+    "Column 'address' still has 11% missing values after cleaning; consider a fill strategy or manual review.",
+    "Column 'email' has 3 unresolved validation issue(s); review before use.",
+    "Column 'phone' has 9 unresolved validation issue(s); review before use."
+  ]
+}

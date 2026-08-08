@@ -1,0 +1,76 @@
+{
+  "pages_attempted": 1,
+  "pages_succeeded": 1,
+  "pages_failed": 0,
+  "pages_skipped_robots": 0,
+  "total_contacts_found": 6,
+  "valid_contacts_found": 6,
+  "unique_valid_emails": 3,
+  "unique_valid_phones": 3,
+  "page_results": [
+    {
+      "url": "http://localhost:8936/contact_page.html",
+      "success": true,
+      "fetch_method": "requests",
+      "status_code": 200,
+      "contacts": [
+        {
+          "contact_type": "email",
+          "raw_value": "john.doe@acme.com",
+          "formatted": "john.doe@acme.com",
+          "is_valid": true,
+          "source_url": "http://localhost:8936/contact_page.html",
+          "extraction_method": "mailto",
+          "validation_errors": []
+        },
+        {
+          "contact_type": "email",
+          "raw_value": "SUPPORT@Acme.com",
+          "formatted": "support@acme.com",
+          "is_valid": true,
+          "source_url": "http://localhost:8936/contact_page.html",
+          "extraction_method": "mailto",
+          "validation_errors": []
+        },
+        {
+          "contact_type": "phone",
+          "raw_value": "+14158675310",
+          "formatted": "+14158675310",
+          "is_valid": true,
+          "source_url": "http://localhost:8936/contact_page.html",
+          "extraction_method": "tel",
+          "validation_errors": []
+        },
+        {
+          "contact_type": "email",
+          "raw_value": "info@acme.com",
+          "formatted": "info@acme.com",
+          "is_valid": true,
+          "source_url": "http://localhost:8936/contact_page.html",
+          "extraction_method": "text",
+          "validation_errors": []
+        },
+        {
+          "contact_type": "phone",
+          "raw_value": "(415) 867-5309",
+          "formatted": "+14158675309",
+          "is_valid": true,
+          "source_url": "http://localhost:8936/contact_page.html",
+          "extraction_method": "text",
+          "validation_errors": []
+        },
+        {
+          "contact_type": "phone",
+          "raw_value": "415.867.5311",
+          "formatted": "+14158675311",
+          "is_valid": true,
+          "source_url": "http://localhost:8936/contact_page.html",
+          "extraction_method": "text",
+          "validation_errors": []
+        }
+      ],
+      "error": null,
+      "skipped_reason": null
+    }
+  ]
+}
