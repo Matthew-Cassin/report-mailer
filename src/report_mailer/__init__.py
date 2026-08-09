@@ -35,15 +35,15 @@ from .formatter import detect_report_type, format_report
 from .mailer import ReportMailer
 from .models import EmailAttachment, EmailMessage, EmailSendResult, ReportMailerError
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 
 __all__ = [
-    "ReportMailer",
-    "format_report",
-    "detect_report_type",
-    "EmailMessage",
     "EmailAttachment",
+    "EmailMessage",
     "EmailSendResult",
+    "ReportMailer",
     "ReportMailerError",
     "__version__",
+    "detect_report_type",
+    "format_report",
 ]

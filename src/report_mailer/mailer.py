@@ -17,7 +17,6 @@ from email.charset import QP, Charset
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import List, Optional
 
 from email_phone_validator import EmailValidator
 
@@ -72,13 +71,13 @@ class ReportMailer:
         self,
         smtp_host: str,
         smtp_port: int = 587,
-        username: Optional[str] = None,
-        password: Optional[str] = None,
+        username: str | None = None,
+        password: str | None = None,
         use_tls: bool = True,
         timeout: int = 10,
-        sender: Optional[str] = None,
+        sender: str | None = None,
         validate_recipients: bool = True,
-        email_validator: Optional[EmailValidator] = None,
+        email_validator: EmailValidator | None = None,
     ) -> None:
         if smtp_port <= 0:
             raise ReportMailerError(f"smtp_port must be positive, got {smtp_port}")
@@ -135,7 +134,7 @@ class ReportMailer:
 
         return EmailSendResult(success=True, recipients=recipients)
 
-    def _invalid_recipients(self, recipients: List[str]) -> List[str]:
+    def _invalid_recipients(self, recipients: list[str]) -> list[str]:
         return [r for r in recipients if not self.email_validator.validate(r).is_valid]
 
     def _build_mime(self, message: EmailMessage) -> MIMEMultipart:
@@ -147,8 +146,11 @@ class ReportMailer:
             mime["Cc"] = ", ".join(message.cc)
 
         alt = MIMEMultipart("alternative")
-        alt.attach(MIMEText(message.text_body, "plain", _charset=_QP_CHARSET))
-        alt.attach(MIMEText(message.html_body, "html", _charset=_QP_CHARSET))
+        # MIMEText genuinely accepts an email.charset.Charset at runtime
+        # (that's how body_encoding=QP gets applied instead of base64);
+        # typeshed's stub only declares `str | None`.
+        alt.attach(MIMEText(message.text_body, "plain", _charset=_QP_CHARSET))  # type: ignore[arg-type]
+        alt.attach(MIMEText(message.html_body, "html", _charset=_QP_CHARSET))  # type: ignore[arg-type]
         mime.attach(alt)
 
         for attachment in message.attachments:

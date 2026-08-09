@@ -14,7 +14,6 @@ send can even be attempted.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Optional
 
 __all__ = ["EmailAttachment", "EmailMessage", "EmailSendResult", "ReportMailerError"]
 
@@ -52,12 +51,12 @@ class EmailMessage:
             or CSV.
     """
 
-    to: List[str]
+    to: list[str]
     subject: str
     html_body: str
     text_body: str
-    cc: List[str] = field(default_factory=list)
-    attachments: List[EmailAttachment] = field(default_factory=list)
+    cc: list[str] = field(default_factory=list)
+    attachments: list[EmailAttachment] = field(default_factory=list)
 
 
 @dataclass
@@ -80,8 +79,8 @@ class EmailSendResult:
     """
 
     success: bool
-    recipients: List[str]
-    error: Optional[str] = None
+    recipients: list[str]
+    error: str | None = None
 
 
 class ReportMailerError(Exception):

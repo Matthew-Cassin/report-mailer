@@ -70,8 +70,8 @@ _REPORT_TYPE_TITLES = {
 )
 def send(
     report_json: str,
-    to_addrs: tuple,
-    cc_addrs: tuple,
+    to_addrs: tuple[str, ...],
+    cc_addrs: tuple[str, ...],
     subject: str,
     attach: bool,
     smtp_host: str,
