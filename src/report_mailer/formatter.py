@@ -17,7 +17,7 @@ appearance across clients.
 from __future__ import annotations
 
 import html
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 __all__ = ["detect_report_type", "format_report"]
 
@@ -32,7 +32,7 @@ _STAT_BOX_STYLE = (
 )
 
 
-def detect_report_type(data: Dict[str, Any]) -> str:
+def detect_report_type(data: dict[str, Any]) -> str:
     """Identify which sibling project produced ``data``, if any.
 
     Returns:
@@ -46,7 +46,7 @@ def detect_report_type(data: Dict[str, Any]) -> str:
     return "generic"
 
 
-def format_report(data: Dict[str, Any], title: str = "Report") -> Tuple[str, str]:
+def format_report(data: dict[str, Any], title: str = "Report") -> tuple[str, str]:
     """Format ``data`` as an ``(html_body, text_body)`` pair.
 
     Auto-detects the report type via :func:`detect_report_type` and
@@ -61,7 +61,7 @@ def format_report(data: Dict[str, Any], title: str = "Report") -> Tuple[str, str
     return _format_generic(data, title)
 
 
-def _format_quality_report(data: Dict[str, Any]) -> Tuple[str, str]:
+def _format_quality_report(data: dict[str, Any]) -> tuple[str, str]:
     stats = data.get("statistics", {})
     issues = data.get("issues", [])
     before = stats.get("quality_score_before", 0.0)
@@ -81,9 +81,11 @@ def _format_quality_report(data: Dict[str, Any]) -> Tuple[str, str]:
         f'<h1 style="{_H1_STYLE}">CSV Data Quality Report</h1>',
         f'<p style="{_P_STYLE}">Generated {html.escape(str(data.get("timestamp", "")))}</p>',
         _stat_boxes_html(stat_items),
-        f'<p style="{_P_STYLE}">'
-        f"Quality score {'improved' if delta >= 0 else 'declined'} by "
-        f"{abs(delta):.2f} after cleaning.</p>",
+        (
+            f'<p style="{_P_STYLE}">'
+            f"Quality score {'improved' if delta >= 0 else 'declined'} by "
+            f"{abs(delta):.2f} after cleaning.</p>"
+        ),
     ]
     if issues:
         html_parts.append(_issues_table_html(issues))
@@ -104,7 +106,7 @@ def _format_quality_report(data: Dict[str, Any]) -> Tuple[str, str]:
     return "\n".join(html_parts), "\n".join(text_parts)
 
 
-def _issues_table_html(issues: List[Dict[str, Any]], max_rows: int = 20) -> str:
+def _issues_table_html(issues: list[dict[str, Any]], max_rows: int = 20) -> str:
     rows = issues[:max_rows]
     header = (
         f'<tr><th style="{_TH_STYLE}">Row</th><th style="{_TH_STYLE}">Field</th>'
@@ -126,7 +128,7 @@ def _issues_table_html(issues: List[Dict[str, Any]], max_rows: int = 20) -> str:
     return f'<table style="{_TABLE_STYLE}">{header}{body}</table>{footer}'
 
 
-def _format_scrape_report(data: Dict[str, Any]) -> Tuple[str, str]:
+def _format_scrape_report(data: dict[str, Any]) -> tuple[str, str]:
     stat_items = [
         ("Pages attempted", data.get("pages_attempted", "?")),
         ("Pages succeeded", data.get("pages_succeeded", "?")),
@@ -160,7 +162,7 @@ def _format_scrape_report(data: Dict[str, Any]) -> Tuple[str, str]:
     return "\n".join(html_parts), "\n".join(text_parts)
 
 
-def _failed_pages_table_html(pages: List[Dict[str, Any]], max_rows: int = 20) -> str:
+def _failed_pages_table_html(pages: list[dict[str, Any]], max_rows: int = 20) -> str:
     rows = pages[:max_rows]
     header = f'<tr><th style="{_TH_STYLE}">URL</th><th style="{_TH_STYLE}">Reason</th></tr>'
     body = "".join(
@@ -175,7 +177,7 @@ def _failed_pages_table_html(pages: List[Dict[str, Any]], max_rows: int = 20) ->
     )
 
 
-def _stat_boxes_html(items: List[Tuple[str, Any]]) -> str:
+def _stat_boxes_html(items: list[tuple[str, Any]]) -> str:
     boxes = "".join(
         f'<div style="{_STAT_BOX_STYLE}"><b>{html.escape(str(value))}</b><br>'
         f'<span style="font-size:12px;color:#666;">{html.escape(label)}</span></div>'
@@ -184,7 +186,7 @@ def _stat_boxes_html(items: List[Tuple[str, Any]]) -> str:
     return f"<div>{boxes}</div>"
 
 
-def _format_generic(data: Dict[str, Any], title: str) -> Tuple[str, str]:
+def _format_generic(data: dict[str, Any], title: str) -> tuple[str, str]:
     html_rows = "".join(
         f'<tr><td style="{_TD_STYLE}"><b>{html.escape(str(k))}</b></td>'
         f'<td style="{_TD_STYLE}">{html.escape(str(v))}</td></tr>'

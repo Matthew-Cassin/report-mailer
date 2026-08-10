@@ -1,8 +1,9 @@
 # report-mailer
 
-![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+[![CI](https://github.com/Matthew-Cassin/report-mailer/actions/workflows/ci.yml/badge.svg)](https://github.com/Matthew-Cassin/report-mailer/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+![Types](https://img.shields.io/badge/types-mypy%20strict-brightgreen)
 
 A Python library and CLI that formats and emails the JSON reports my other tools already produce. Auto-detects [`csv-data-cleaner`](https://github.com/Matthew-Cassin/csv-data-cleaner)'s data-quality reports and [`contact-scraper`](https://github.com/Matthew-Cassin/contact-scraper)'s scrape reports (or falls back to a generic renderer for any other JSON), builds an HTML summary email with a plain-text fallback and the raw report attached, then sends it over SMTP.
 
